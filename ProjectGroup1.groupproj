@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EDB8FDD9-E4BC-426F-80AE-3A355AB9B1BD}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DllDriver.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DelphiDll.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DllDriver">
+        <MSBuild Projects="DllDriver.dproj"/>
+    </Target>
+    <Target Name="DllDriver:Clean">
+        <MSBuild Projects="DllDriver.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DllDriver:Make">
+        <MSBuild Projects="DllDriver.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DelphiDll">
+        <MSBuild Projects="DelphiDll.dproj"/>
+    </Target>
+    <Target Name="DelphiDll:Clean">
+        <MSBuild Projects="DelphiDll.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiDll:Make">
+        <MSBuild Projects="DelphiDll.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DllDriver;DelphiDll"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DllDriver:Clean;DelphiDll:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DllDriver:Make;DelphiDll:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
