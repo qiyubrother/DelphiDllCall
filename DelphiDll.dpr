@@ -19,7 +19,8 @@ uses
 {$R *.res}
 
 exports
-ShowDllMainForm;
-
+ShowDllMainForm,
+ChangeName,
+GetName;
 begin
 end.
